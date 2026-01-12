@@ -111,138 +111,117 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Video Background Container - Only for Nav and Hero */}
-      <div className="relative">
-        {/* Background Video - Fixed but only visible in this container */}
-        <div className="fixed top-0 left-0 right-0 h-screen z-0">
-          <video
-            ref={videoRef}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover object-[90%_center] md:object-center"
+      <div className="relative min-h-screen">
+  {/* Background Video Container */}
+  <div className="fixed top-0 left-0 right-0 h-screen z-0">
+    <video
+      ref={videoRef}
+      autoPlay
+      loop
+      muted
+      playsInline
+      className="absolute inset-0 w-full h-full object-cover object-[80%_center] md:object-center"
+    >
+      <source src={shivaVideo} type="video/mp4" />
+    </video>
+    {/* Overlays */}
+    <div className="absolute inset-0 bg-black/70 md:bg-[#000000bf]" />
+    <div className="absolute inset-y-0 right-[-10%] w-[80%] md:w-[55%] bg-divine-gradient opacity-[0.15] md:opacity-[0.18] blur-3xl" />
+  </div>
+
+  {/* Responsive Navigation */}
+  <nav
+    className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      scrolled 
+        ? "bg-white/95 shadow-md backdrop-blur-md py-2" 
+        : "bg-transparent py-3 md:py-5"
+    }`}
+  >
+    <div className="container mx-auto px-4 md:px-6 lg:px-10">
+      <div className="flex items-center justify-between gap-2 relative">
+        
+        {/* Logo Section */}
+        <div className="flex items-center min-w-0 z-10">
+          <Link
+            to="https://omgofficial.com/"
+            target="_blank"
+            className="flex items-center gap-2 min-w-0"
           >
-            <source src={shivaVideo} type="video/mp4" />
-          </video>
-          <div className="absolute inset-0 bg-[#000000bf]" />
-          <div className="absolute inset-y-0 right-[-10%] w-[55%] bg-divine-gradient opacity-[0.18] blur-3xl" />
+            <img
+              src={logo}
+              alt="Logo"
+              className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 flex-shrink-0"
+            />
+            <div className="flex flex-col min-w-0">
+              <p className={`text-[9px] sm:text-[10px] font-semibold leading-tight tracking-[0.1em] sm:tracking-[0.2em] uppercase truncate ${scrolled ? 'text-orange-600' : 'text-[#FF9933B2]'}`}>
+                Oh My God • OMG
+              </p>
+              <p className={`text-[8px] sm:text-[9px] font-medium leading-tight uppercase truncate ${scrolled ? 'text-primary-600' : 'text-white/70'}`}>
+                Yours Spiritually
+              </p>
+              <p className={`font-display text-xs sm:text-sm font-bold leading-tight truncate ${scrolled ? 'text-primary' : 'text-white'}`}>
+                Maha Yagam 2026
+              </p>
+            </div>
+          </Link>
         </div>
 
-        <nav
-          className={`fixed top-0 left-0 right-0 z-40 px-10 transition-all duration-300
-    ${scrolled ? "bg-white shadow-md backdrop-blur-md" : "bg-transparent"}
-  `}
+        {/* Desktop Navigation - Hidden on Mobile */}
+        <div
+          className={`hidden lg:flex items-center gap-6 xl:gap-8 text-sm font-medium absolute left-1/2 -translate-x-1/2 transition-colors duration-300 ${
+            scrolled ? "text-slate-900" : "text-white"
+          }`}
         >
-          <div className="container mx-auto px-3 sm:px-4 py-2 sm:py-2.5">
-            <div className="flex items-center justify-between gap-2 sm:gap-3 lg:gap-4 relative">
-              {/* Logo Section - Compact but complete */}
-              <div className="flex items-center gap-1.5 sm:gap-2 min-w-0 z-10">
-                <Link
-                  to="https://omgofficial.com/"
-                  target="_blank"
-                  className="flex items-center gap-1.5 sm:gap-2 min-w-0"
-                >
-                  <img
-                    src={logo}
-                    alt="Oh My God"
-                    className="h-7 w-7 sm:h-8 sm:w-8 flex-shrink-0"
-                  />
-                  <div className="min-w-0">
-                    <p className="text-[10px] sm:text-xs font-semibold leading-tight tracking-[0.15em] sm:tracking-[0.2em] uppercase text-[#FF9933B2] truncate">
-                      Oh My God • OMG
-                    </p>
-                    <p className="text-[9px] sm:text-[10px] font-medium leading-tight tracking-[0.15em] sm:tracking-[0.18em] uppercase text-secondary/70 truncate">
-                      Yours Spiritually
-                    </p>
-                    <p className="font-display text-xs sm:text-sm  text-primary leading-tight truncate">
-                      Maha Yagam 2026
-                    </p>
-                  </div>
-                </Link>
-              </div>
+          {['Overview', 'Why Participate', 'Rudraksha', 'Event Details'].map((item) => (
+            <button
+              key={item}
+              onClick={() => scrollToSection(item.toLowerCase().replace(" ", "-"))}
+              className="hover:text-orange-500 transition-colors whitespace-nowrap"
+            >
+              {item}
+            </button>
+          ))}
+        </div>
 
-              {/* Navigation Links - Centered */}
-              <div
-                className={`hidden md:flex items-center gap-3 lg:gap-4 xl:gap-5 text-sm font-medium flex-shrink-0 absolute left-1/2 -translate-x-1/2 transition-colors duration-300
-    ${scrolled ? "text-primary" : "text-white"}
-  `}
-              >
-                <button
-                  onClick={() => scrollToSection("overview")}
-                  className="hover:text-primary transition-colors whitespace-nowrap"
-                >
-                  Overview
-                </button>
-                <button
-                  onClick={() => scrollToSection("why-participate")}
-                  className="hover:text-primary transition-colors whitespace-nowrap"
-                >
-                  Why Participate
-                </button>
-                <button
-                  onClick={() => scrollToSection("rudraksha")}
-                  className="hover:text-primary transition-colors whitespace-nowrap"
-                >
-                  Rudraksha
-                </button>
-                <button
-                  onClick={() => scrollToSection("event-details")}
-                  className="hover:text-primary transition-colors whitespace-nowrap"
-                >
-                  Event Details
-                </button>
-              </div>
-
-              {/* Action Button - Register only */}
-              <div
-                className={`flex items-center gap-1 sm:gap-1.5 flex-shrink-0 ml-auto z-10  ${
-                  scrolled ? "text-primary" : "text-white"
-                }`}
-              >
-                {/* <ThemeToggle /> */}
-
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="
-      bg-transparent
-    hover:bg-transparent
-
-    hover:text-white/70
-    transition-colors
-    px-4 h-8 md:h-9"
-                  onClick={() => setIsRegistrationOpen(true)}
-                >
-                  Register
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="text-white bg-[linear-gradient(115.78deg,#FF9933_0%,#FFB84D_40%,#DC2626_100%)]    hover:bg-transparent    hover:text-white/70  hover:bg-[linear-gradient(115.78deg,#FF9933_0%,#FFB84D_40%,#DC2626_100%)] transition-colors
-    px-4 h-8 md:h-9 rounded-[5px]
-  "
-                  onClick={() => setIsBookingOpen(true)}
-                >
-                  Pre-Book
-                </Button>
-              </div>
-            </div>
-          </div>
-        </nav>
-
-        <main className="pt-16 relative z-10">
-          {/* Hero */}
-          <section id="overview">
-            <HeroSection
-              onRegisterClick={() => setIsRegistrationOpen(true)}
-              onPreBookClick={() => setIsBookingOpen(true)}
-            />
-          </section>
-
-          {/* Stats Section */}
-          <StatsSection />
-        </main>
+        {/* Action Buttons */}
+        <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0 z-10">
+          <Button
+            variant="ghost"
+            size="sm"
+            className={`hidden sm:inline-flex px-3 h-8 md:h-9 hover:text-orange-500 hover:bg-transparent transition-colors ${
+               scrolled ? "text-slate-900" : "text-white"
+            }`}
+            onClick={() => setIsRegistrationOpen(true)}
+          >
+            Register
+          </Button>
+          
+          <Button
+            size="sm"
+            className="text-white bg-[linear-gradient(115.78deg,#FF9933_0%,#FFB84D_40%,#DC2626_100%)] hover:opacity-90 transition-all px-4 sm:px-6 h-8 md:h-10 rounded-[4px] text-[11px] sm:text-xs font-bold uppercase tracking-wider"
+            onClick={() => setIsBookingOpen(true)}
+          >
+            Pre-Book
+          </Button>
+        </div>
       </div>
+    </div>
+  </nav>
+
+  {/* Main Content Area */}
+  <main className="relative z-10 pt-20 md:pt-24">
+    <section id="overview" className="w-full">
+      <HeroSection
+        onRegisterClick={() => setIsRegistrationOpen(true)}
+        onPreBookClick={() => setIsBookingOpen(true)}
+      />
+    </section>
+
+    <section id="stats" className="w-full">
+      <StatsSection />
+    </section>
+  </main>
+</div>
 
       {/* Rest of content - outside video background */}
       <div className="relative z-10 bg-background">
