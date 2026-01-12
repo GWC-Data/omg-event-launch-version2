@@ -7,6 +7,9 @@ const VideoSection = () => {
   const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  // Icon URLs from Figma
+  const liveDarshanIcon = "https://www.figma.com/api/mcp/asset/afe80b04-7eb7-44b6-887d-551295d0663e";
+
   const handlePlayPause = () => {
     if (videoRef.current) {
       if (isPlaying) {
@@ -26,24 +29,13 @@ const VideoSection = () => {
   };
 
   return (
-    <div className="h-full flex flex-col justify-center py-8 md:py-12 px-4 md:px-8">
-      <div className="text-center mb-6 md:mb-8">
-        <span className="inline-block px-3 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-semibold uppercase tracking-wider mb-4">
-          Experience The Divine
-        </span>
-        <h2 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-3">
-          A Glimpse Into{" "}
-          <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            Sacred Journey
-          </span>
-        </h2>
-        <p className="text-muted-foreground text-sm md:text-base">
-          Watch and feel the spiritual energy that awaits you
-        </p>
-      </div>
+    <div className="relative w-full">
+      {/* Video Container */}
+      <div className="relative w-full aspect-[601/400] shadow-[0px_10px_30px_0px_rgba(0,0,0,0.5)] overflow-hidden group">
+        {/* Background gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/10 z-10" />
 
-      <div className="relative aspect-video rounded-2xl overflow-hidden group">
-        {/* Placeholder video - replace with actual promotional video */}
+        {/* Video */}
         <video
           ref={videoRef}
           className="w-full h-full object-cover"
@@ -58,37 +50,37 @@ const VideoSection = () => {
           />
         </video>
 
-        {/* Play Button Overlay - Much more transparent, no white background */}
+        {/* Play Button Overlay - Centered */}
         {!isPlaying && (
-          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-b from-black/10 via-transparent to-black/10">
+          <div className="absolute inset-0 flex items-center justify-center z-20">
             <button
               onClick={handlePlayPause}
-              className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-card/95 hover:bg-card flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-lg backdrop-blur-sm"
+              className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[rgba(28,28,34,0.95)] backdrop-blur-[2px] hover:bg-[rgba(28,28,34,1)] flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1),0px_4px_6px_-4px_rgba(0,0,0,0.1)]"
             >
               <Play
-                className="w-6 h-6 md:w-8 md:h-8 text-primary ml-1"
+                className="w-6 h-6 sm:w-8 sm:h-8 text-primary ml-1"
                 fill="currentColor"
               />
             </button>
           </div>
         )}
 
-        {/* Controls */}
+        {/* Controls - Show when playing */}
         {isPlaying && (
-          <div className="absolute bottom-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+          <div className="absolute bottom-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity z-20">
             <Button
-              variant="secondary"
+              variant="ghost"
               size="sm"
               onClick={handlePlayPause}
-              className="bg-card/90 backdrop-blur-sm hover:bg-card"
+              className="bg-card/90 backdrop-blur-sm hover:bg-secondary"
             >
               Pause
             </Button>
             <Button
-              variant="secondary"
+              variant="ghost"
               size="sm"
               onClick={toggleMute}
-              className="bg-card/90 backdrop-blur-sm hover:bg-card"
+              className="bg-card/90 backdrop-blur-sm hover:bg-secondary"
             >
               {isMuted ? (
                 <VolumeX className="w-4 h-4" />
@@ -98,6 +90,23 @@ const VideoSection = () => {
             </Button>
           </div>
         )}
+
+        {/* Live Darshan & Reels Badge - Top Center */}
+        <div className="absolute top-2 sm:top-4 left-1/2 -translate-x-1/2 bg-[#e32c26] border border-white/20 h-[32px] sm:h-[38px] px-2 sm:px-4 flex items-center gap-1.5 sm:gap-2 z-30">
+          <div className="w-3 h-3 sm:w-4 sm:h-4">
+            <img
+              alt=""
+              className="block max-w-none w-full h-full"
+              src={liveDarshanIcon}
+            />
+          </div>
+          <span
+            className="text-white text-center text-xs sm:text-sm font-semibold whitespace-nowrap"
+            style={{ fontFamily: "Jost, sans-serif" }}
+          >
+            Live Darshan & Reels
+          </span>
+        </div>
       </div>
     </div>
   );

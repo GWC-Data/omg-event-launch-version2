@@ -1,110 +1,138 @@
-import { Heart, Shield, Sparkles, Users, Star, Zap } from "lucide-react";
+import { ReelsPlayer, type ReelData } from "./ReelItem";
+import { Button } from "@/components/ui/button";
 
-const reasons = [
+// Sample video data for the reels
+const reelVideos: ReelData[] = [
   {
-    icon: Sparkles,
-    title: "Pooja of All Poojas",
-    description: "A once in a lifetime opportunity to witness the longest non stop pooja ever performed.",
+    id: "11",
+    type: "youtube",
+    url: "vto3Re23qvQ",
+    title: "Tirupati Balaji Aarti Darshan",
+    desc: " Blessed Morning Live Aarti to Receive Peace, Strength and Blessings",
   },
   {
-    icon: Shield,
-    title: "Divine Vibrations",
-    description: "Experience the transformative power of 1 million chants of lord Shivas name by 25 devoted pandithars, turning negativity into positivity.",
+    id: "1",
+    type: "video",
+    url: "https://assets.mixkit.co/videos/preview/mixkit-waves-coming-to-the-beach-5016-large.mp4",
+    title: "Divine Energy",
+    desc: "1,00,000 Mantra Chants Completed",
   },
   {
-    icon: Heart,
-    title: "The Sacred Seed",
-    description: "1,00,000 Rudraksha beads elevated through mantric purification, each infused with Lord Shiva’s name a million times.",
+    id: "2",
+    type: "youtube",
+    url: "g4hqlgm-5Bs",
+    title: "Live Ganga Aarti 🙏🏻🪔",
+    desc: "Live Ganga Aarti at Kashi Vishwanath Temple, Varanasi",
   },
   {
-    icon: Users,
-    title: "Historic Moment",
-    description: "Join a massive spiritual gathering and be part of a Guinness World Record attempt.",
+    id: "3",
+    type: "video",
+    url: "https://assets.mixkit.co/videos/preview/mixkit-tree-with-yellow-flowers-1173-large.mp4",
+    title: "Jagannath dham",
+    desc: "Today Mangal aarti darshan of shree Jagannath 🙏✨ on the Eve of Padma (Lotus)besha 🙏🥺",
   },
-  // {
-  //   icon: Star,
-  //   title: "Historic Moment",
-  //   description: "Witness and be part of a Guinness World Record attempt - a historic event that will be remembered for generations.",
-  // },
-  // {
-  //   icon: Zap,
-  //   title: "Life-Changing Blessings",
-  //   description: "Carry home the divine energy through blessed Rudraksha beads, infused with 1,00,000 powerful mantras for eternal prosperity.",
-  // },
+  {
+    id: "4",
+    type: "youtube",
+    url: "VRLcConud0o",
+    title: "Youtube Integration",
+    desc: "Seamless embed support",
+  },
 ];
 
-const WhyParticipateSection = () => {
+interface WhyParticipateSectionProps {
+  onRegisterClick?: () => void;
+  onPreBookClick?: () => void;
+}
+
+const WhyParticipateSection = ({
+  onRegisterClick,
+  onPreBookClick,
+}: WhyParticipateSectionProps) => {
+  // Icon URL from Figma
+  const liveDarshanIcon = "https://www.figma.com/api/mcp/asset/e888d089-3434-4fb6-bcf7-baf2a1bf2134";
+
   return (
-    <section className="py-20 md:py-28 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-divine-purple/5 via-background to-background" />
-      
-      <div className="container mx-auto px-4 relative z-10">
-        {/* Why We Are Doing This */}
-        <div className="text-center mb-16">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-gold/10 border border-gold/20 text-gold text-xs uppercase tracking-widest mb-4">
-            Our Sacred Mission
-          </span>
-          <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground mb-6">
-            Why <span className="gold-text-gradient">Maha Yagam</span>?
-          </h2>
-          <div className="max-w-3xl mx-auto space-y-4 text-muted-foreground text-lg leading-relaxed">
-            <p>
-              In an age of turmoil and uncertainty, humanity turns to the divine for strength and upliftment.
-              <span className="text-gold font-medium"> Maha Yagam 2026</span> is our humble offering to Lord Shiva — the longest non stop pooja ever performed on Earth
-            </p>
-             <p>
-              On the auspicious night of Maha Shivarathri,
-              <span className="text-gold font-medium"> Oh My God (OMG)</span> launches its first grand spiritual event. For
-              <span className="text-gold font-medium"> 34 continuous hours, 25 devoted pandithars</span> will chant the sacred Rudhram 
-              <span className="text-gold font-medium">1 million times, sanctifying 1,00,000 Rudraksha beads</span> with mantric energy.
-            </p>
-            <p>
-              We believe that when <span className="text-gold font-medium">1,00,000 sacred mantras</span> are chanted 
-              over <span className="text-gold font-medium">1,00,000 Rudraksha beads</span> by devoted Pandithars, 
-              it creates a powerful vortex of divine energy that can heal, protect, and transform lives.
-            </p>
-          </div>
-        </div>
-
-        {/* Why You Should Participate */}
-        <div className="mb-12">
-          <h3 className="font-display text-2xl md:text-3xl font-bold text-center text-foreground mb-10">
-            Why <span className="gold-text-gradient">You</span> Should Be There
-          </h3>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {reasons.map((reason, index) => (
-              <div
-                key={index}
-                className="group relative p-6 rounded-2xl bg-card/80 dark:bg-card/50 backdrop-blur-sm border border-gold/20 dark:border-gold/10 hover:border-gold/40 dark:hover:border-gold/30 transition-all duration-500 hover:shadow-lg hover:shadow-gold/10 dark:hover:shadow-gold/5 shadow-sm"
+    <section className="py-20 md:py-28 relative overflow-hidden bg-[#f7f7f7]">
+      <div className="container mx-auto px-4 md:px-8 lg:px-[100px] max-w-7xl relative z-10">
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-center">
+          {/* Left Column - Text Content */}
+          <div className="flex-1 flex flex-col gap-10">
+            {/* Badge and Heading */}
+            <div className="flex flex-col items-start">
+              <span
+                className="inline-block px-4 py-1.5 rounded-full bg-transparent text-[#e53e29] text-[18px] font-semibold uppercase tracking-[1px] mb-4"
+                style={{ fontFamily: "Jost, sans-serif" }}
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-gold/10 dark:from-gold/5 via-transparent to-divine-purple/10 dark:to-divine-purple/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                <div className="relative z-10">
-                  <div className="w-12 h-12 rounded-xl bg-gold/15 dark:bg-gold/10 border border-gold/30 dark:border-gold/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <reason.icon className="w-6 h-6 text-gold" />
-                  </div>
-                  <h4 className="font-display text-lg font-semibold text-foreground mb-2">
-                    {reason.title}
-                  </h4>
-                  <p className="text-muted-foreground dark:text-muted-foreground text-sm leading-relaxed">
-                    {reason.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+                Our Sacred Mission
+              </span>
+              <h2
+                className="text-[42px] font-bold text-[#1c1c1c] tracking-[2px] leading-[50.4px] mb-0"
+                style={{ fontFamily: "Jost, sans-serif" }}
+              >
+                Why Maha Yagam?
+              </h2>
+            </div>
 
-        {/* Divine Quote */}
-        <div className="mt-16 text-center">
-          <div className="inline-block p-8 rounded-2xl bg-gradient-to-br from-gold/5 via-card/50 to-divine-purple/5 border border-gold/20">
-            <p className="font-display text-xl md:text-2xl text-foreground italic mb-4">
-              "When devotion meets divine grace, miracles happen."
-            </p>
-            <p className="text-gold text-sm uppercase tracking-widest">
-              — Ancient Wisdom
-            </p>
+            {/* Description Text */}
+            <div
+              className="text-[#a1a1aa] text-[16px] leading-[31px] max-w-[752px]"
+              style={{ fontFamily: "Jost, sans-serif" }}
+            >
+              <p>
+                In an age of turmoil and uncertainty, humanity turns to the divine for strength and upliftment. Maha Yagam 2026 is our humble offering to Lord Shiva — the longest non stop pooja ever performed on Earth. On the auspicious night of Maha Shivarathri, Oh My God (OMG) launches its first grand spiritual event. For 34 continuous hours, 25 devoted purohits will chant the sacred Rudhram 1 million times, sanctifying 100,000 Rudraksha beads with mantric energy. We believe that when 100,000 sacred mantras are chanted over 100,000 Rudraksha beads by devoted Pandithars, it creates a powerful vortex of divine energy that can heal, protect, and transform lives.
+              </p>
+            </div>
+
+            {/* Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button
+                onClick={onRegisterClick}
+                className="bg-[#e32c26] hover:bg-[#e32c26]/90 text-white text-[18px] font-semibold h-[56px] px-8 rounded-md shadow-[0px_14px_45px_0px_rgba(255,153,51,0.3)]"
+                style={{ fontFamily: "Jost, sans-serif" }}
+              >
+                Register for Free
+              </Button>
+              <Button
+                onClick={onPreBookClick}
+                variant="outline"
+                className="border-[#e32c26] text-[#e32c26] hover:bg-[#e32c26]/5 hover:text-[#e32c26] text-[18px] font-medium h-[56px] px-8 rounded-md backdrop-blur-sm"
+                style={{ fontFamily: "Jost, sans-serif" }}
+              >
+                Pre-Book Blessed Rudraksha
+              </Button>
+            </div>
+          </div>
+
+          {/* Right Column - Video Reel */}
+          <div className="relative w-full lg:w-[340px] flex-shrink-0">
+            {/* Live Darshan & Reels Badge */}
+            <div className="absolute -top-[22px] left-1/2 lg:left-[77px] lg:translate-x-0 -translate-x-1/2 z-20 bg-[#e32c26] border border-white/20 h-[38px] px-4 flex items-center gap-2 rounded-md">
+              <div className="w-4 h-4">
+                <img
+                  alt=""
+                  className="block max-w-none w-full h-full"
+                  src={liveDarshanIcon}
+                />
+              </div>
+              <span
+                className="text-white text-[14px] font-semibold whitespace-nowrap"
+                style={{ fontFamily: "Jost, sans-serif" }}
+              >
+                Live Darshan & Reels
+              </span>
+            </div>
+
+            {/* Video Reel Container */}
+            <div className="relative">
+              {/* Gradient blur effect */}
+              <div className="absolute -inset-4 bg-gradient-to-r from-[rgba(255,153,51,0.4)] via-[rgba(255,153,51,0.4)] to-[rgba(255,153,51,0.4)] blur-[20px] opacity-40 rounded-[24px]" />
+              
+              {/* Reels Player */}
+              <div className="relative">
+                <ReelsPlayer videos={reelVideos} />
+              </div>
+            </div>
           </div>
         </div>
       </div>
