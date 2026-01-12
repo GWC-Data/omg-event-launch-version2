@@ -19,6 +19,7 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import logo from "@/assets/site-logo.png";
 import { Link } from "react-router-dom";
 import shivaVideo from "@/assets/shive-2.mp4";
+import { cn } from "@/lib/utils";
 const Index = () => {
   const [isRegistrationOpen, setIsRegistrationOpen] = useState(false);
   const [isBookingOpen, setIsBookingOpen] = useState(false);
@@ -160,16 +161,20 @@ const Index = () => {
                       Oh My God • OMG
                     </p>
                     <p
-                      className={`text-[8px] sm:text-[9px] font-medium leading-tight uppercase truncate ${
-                        scrolled ? "text-[#293088]" : "text-white/70"
-                      }`}
+                      className={cn(
+                        `text-[8px] sm:text-[9px] font-medium leading-tight uppercase truncate ${
+                          scrolled ? "text-primary-600" : "text-white/70"
+                        }`
+                      )}
                     >
                       Yours Spiritually
                     </p>
                     <p
-                      className={`font-display text-xs sm:text-sm font-bold leading-tight truncate ${
-                        scrolled ? "text-[#293088]" : "text-white"
-                      }`}
+                      className={cn(
+                        `font-display text-xs sm:text-sm font-bold leading-tight truncate ${
+                          scrolled ? "text-primary" : "text-white"
+                        }`
+                      )}
                     >
                       Maha Yagam 2026
                     </p>

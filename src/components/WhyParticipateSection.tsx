@@ -104,11 +104,17 @@ const WhyParticipateSection = ({
               >
                 Register for Free
               </Button>
-              <Button
+              {/* <Button
                 onClick={onPreBookClick}
-                variant="outline"
-                className="border-[#e32c26] text-[#e32c26] hover:bg-red-50 hover:text-[#e32c26] text-[18px] font-medium h-[56px] px-8 rounded-md backdrop-blur-sm"
+                className="border-[#e32c26] text-[#e32c26] bg-transparent hover:bg-[#e32c26]/5 hover:text-[#e32c26] text-[18px] font-medium h-[56px] px-8 rounded-md backdrop-blur-sm"
                 style={{ fontFamily: "Jost, sans-serif" }}
+              >
+                Pre-Book Blessed Rudraksha
+              </Button> */}
+              <Button
+                variant="outline"
+                onClick={onPreBookClick}
+                className="border-[#e32c26] text-[#e32c26] hover:bg-[#e32c26]/5 text-[18px] font-medium h-[56px] px-8 hover:text-[#e32c26]  "
               >
                 Pre-Book Blessed Rudraksha
               </Button>
