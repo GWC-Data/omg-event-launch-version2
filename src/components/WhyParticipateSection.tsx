@@ -50,7 +50,8 @@ const WhyParticipateSection = ({
   onPreBookClick,
 }: WhyParticipateSectionProps) => {
   // Icon URL from Figma
-  const liveDarshanIcon = "https://www.figma.com/api/mcp/asset/e888d089-3434-4fb6-bcf7-baf2a1bf2134";
+  const liveDarshanIcon =
+    "https://www.figma.com/api/mcp/asset/e888d089-3434-4fb6-bcf7-baf2a1bf2134";
 
   return (
     <section className="py-20 md:py-28 relative overflow-hidden bg-[#f7f7f7]">
@@ -76,11 +77,21 @@ const WhyParticipateSection = ({
 
             {/* Description Text */}
             <div
-              className="text-[#a1a1aa] text-[16px] leading-[31px] max-w-[752px]"
+              className="text-[#a1a1aa] text-[16px] -mt-5 leading-[31px] max-w-[752px]"
               style={{ fontFamily: "Jost, sans-serif" }}
             >
               <p>
-                In an age of turmoil and uncertainty, humanity turns to the divine for strength and upliftment. Maha Yagam 2026 is our humble offering to Lord Shiva — the longest non stop pooja ever performed on Earth. On the auspicious night of Maha Shivarathri, Oh My God (OMG) launches its first grand spiritual event. For 34 continuous hours, 25 devoted purohits will chant the sacred Rudhram 1 million times, sanctifying 100,000 Rudraksha beads with mantric energy. We believe that when 100,000 sacred mantras are chanted over 100,000 Rudraksha beads by devoted Pandithars, it creates a powerful vortex of divine energy that can heal, protect, and transform lives.
+                In an age of turmoil and uncertainty, humanity turns to the
+                divine for strength and upliftment. Maha Yagam 2026 is our
+                humble offering to Lord Shiva — the longest non stop pooja ever
+                performed on Earth. On the auspicious night of Maha Shivarathri,
+                Oh My God (OMG) launches its first grand spiritual event. For 34
+                continuous hours, 25 devoted purohits will chant the sacred
+                Rudhram 1 million times, sanctifying 100,000 Rudraksha beads
+                with mantric energy. We believe that when 100,000 sacred mantras
+                are chanted over 100,000 Rudraksha beads by devoted Pandithars,
+                it creates a powerful vortex of divine energy that can heal,
+                protect, and transform lives.
               </p>
             </div>
 
@@ -96,7 +107,7 @@ const WhyParticipateSection = ({
               <Button
                 onClick={onPreBookClick}
                 variant="outline"
-                className="border-[#e32c26] text-[#e32c26] hover:bg-[#e32c26]/5 hover:text-[#e32c26] text-[18px] font-medium h-[56px] px-8 rounded-md backdrop-blur-sm"
+                className="border-[#e32c26] text-[#e32c26] hover:bg-red-50 hover:text-[#e32c26] text-[18px] font-medium h-[56px] px-8 rounded-md backdrop-blur-sm"
                 style={{ fontFamily: "Jost, sans-serif" }}
               >
                 Pre-Book Blessed Rudraksha
@@ -127,7 +138,7 @@ const WhyParticipateSection = ({
             <div className="relative">
               {/* Gradient blur effect */}
               <div className="absolute -inset-4 bg-gradient-to-r from-[rgba(255,153,51,0.4)] via-[rgba(255,153,51,0.4)] to-[rgba(255,153,51,0.4)] blur-[20px] opacity-40 rounded-[24px]" />
-              
+
               {/* Reels Player */}
               <div className="relative">
                 <ReelsPlayer videos={reelVideos} />

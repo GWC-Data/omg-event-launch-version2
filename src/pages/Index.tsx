@@ -112,116 +112,134 @@ const Index = () => {
     <div className="min-h-screen bg-background text-foreground">
       {/* Video Background Container - Only for Nav and Hero */}
       <div className="relative min-h-screen">
-  {/* Background Video Container */}
-  <div className="fixed top-0 left-0 right-0 h-screen z-0">
-    <video
-      ref={videoRef}
-      autoPlay
-      loop
-      muted
-      playsInline
-      className="absolute inset-0 w-full h-full object-cover object-[80%_center] md:object-center"
-    >
-      <source src={shivaVideo} type="video/mp4" />
-    </video>
-    {/* Overlays */}
-    <div className="absolute inset-0 bg-black/70 md:bg-[#000000bf]" />
-    <div className="absolute inset-y-0 right-[-10%] w-[80%] md:w-[55%] bg-divine-gradient opacity-[0.15] md:opacity-[0.18] blur-3xl" />
-  </div>
-
-  {/* Responsive Navigation */}
-  <nav
-    className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      scrolled 
-        ? "bg-white/95 shadow-md backdrop-blur-md py-2" 
-        : "bg-transparent py-3 md:py-5"
-    }`}
-  >
-    <div className="container mx-auto px-4 md:px-6 lg:px-10">
-      <div className="flex items-center justify-between gap-2 relative">
-        
-        {/* Logo Section */}
-        <div className="flex items-center min-w-0 z-10">
-          <Link
-            to="https://omgofficial.com/"
-            target="_blank"
-            className="flex items-center gap-2 min-w-0"
+        {/* Background Video Container */}
+        <div className="fixed top-0 left-0 right-0 h-screen z-0">
+          <video
+            ref={videoRef}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover object-[80%_center] md:object-center"
           >
-            <img
-              src={logo}
-              alt="Logo"
-              className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 flex-shrink-0"
-            />
-            <div className="flex flex-col min-w-0">
-              <p className={`text-[9px] sm:text-[10px] font-semibold leading-tight tracking-[0.1em] sm:tracking-[0.2em] uppercase truncate ${scrolled ? 'text-orange-600' : 'text-[#FF9933B2]'}`}>
-                Oh My God • OMG
-              </p>
-              <p className={`text-[8px] sm:text-[9px] font-medium leading-tight uppercase truncate ${scrolled ? 'text-primary-600' : 'text-white/70'}`}>
-                Yours Spiritually
-              </p>
-              <p className={`font-display text-xs sm:text-sm font-bold leading-tight truncate ${scrolled ? 'text-primary' : 'text-white'}`}>
-                Maha Yagam 2026
-              </p>
-            </div>
-          </Link>
+            <source src={shivaVideo} type="video/mp4" />
+          </video>
+          {/* Overlays */}
+          <div className="absolute inset-0 bg-black/70 md:bg-[#000000bf]" />
+          <div className="absolute inset-y-0 right-[-10%] w-[80%] md:w-[55%] bg-divine-gradient opacity-[0.15] md:opacity-[0.18] blur-3xl" />
         </div>
 
-        {/* Desktop Navigation - Hidden on Mobile */}
-        <div
-          className={`hidden lg:flex items-center gap-6 xl:gap-8 text-sm font-medium absolute left-1/2 -translate-x-1/2 transition-colors duration-300 ${
-            scrolled ? "text-slate-900" : "text-white"
+        {/* Responsive Navigation */}
+        <nav
+          className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+            scrolled
+              ? "bg-white/95 shadow-md backdrop-blur-md py-2"
+              : "bg-transparent py-3 md:py-5"
           }`}
         >
-          {['Overview', 'Why Participate', 'Rudraksha', 'Event Details'].map((item) => (
-            <button
-              key={item}
-              onClick={() => scrollToSection(item.toLowerCase().replace(" ", "-"))}
-              className="hover:text-orange-500 transition-colors whitespace-nowrap"
-            >
-              {item}
-            </button>
-          ))}
-        </div>
+          <div className="container mx-auto px-4 md:px-6 lg:px-10">
+            <div className="flex items-center justify-between gap-2 relative">
+              {/* Logo Section */}
+              <div className="flex items-center min-w-0 z-10">
+                <Link
+                  to="https://omgofficial.com/"
+                  target="_blank"
+                  className="flex items-center gap-2 min-w-0"
+                >
+                  <img
+                    src={logo}
+                    alt="Logo"
+                    className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 flex-shrink-0"
+                  />
+                  <div className="flex flex-col min-w-0">
+                    <p
+                      className={`text-[9px] sm:text-[10px] font-semibold leading-tight tracking-[0.1em] sm:tracking-[0.2em] uppercase truncate ${
+                        scrolled ? "text-orange-600" : "text-[#FF9933B2]"
+                      }`}
+                    >
+                      Oh My God • OMG
+                    </p>
+                    <p
+                      className={`text-[8px] sm:text-[9px] font-medium leading-tight uppercase truncate ${
+                        scrolled ? "text-[#293088]" : "text-white/70"
+                      }`}
+                    >
+                      Yours Spiritually
+                    </p>
+                    <p
+                      className={`font-display text-xs sm:text-sm font-bold leading-tight truncate ${
+                        scrolled ? "text-[#293088]" : "text-white"
+                      }`}
+                    >
+                      Maha Yagam 2026
+                    </p>
+                  </div>
+                </Link>
+              </div>
 
-        {/* Action Buttons */}
-        <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0 z-10">
-          <Button
-            variant="ghost"
-            size="sm"
-            className={`hidden sm:inline-flex px-3 h-8 md:h-9 hover:text-orange-500 hover:bg-transparent transition-colors ${
-               scrolled ? "text-slate-900" : "text-white"
-            }`}
-            onClick={() => setIsRegistrationOpen(true)}
-          >
-            Register
-          </Button>
-          
-          <Button
-            size="sm"
-            className="text-white bg-[linear-gradient(115.78deg,#FF9933_0%,#FFB84D_40%,#DC2626_100%)] hover:opacity-90 transition-all px-4 sm:px-6 h-8 md:h-10 rounded-[4px] text-[11px] sm:text-xs font-bold uppercase tracking-wider"
-            onClick={() => setIsBookingOpen(true)}
-          >
-            Pre-Book
-          </Button>
-        </div>
+              {/* Desktop Navigation - Hidden on Mobile */}
+              <div
+                className={`hidden lg:flex items-center gap-6 xl:gap-8 text-sm font-medium absolute left-1/2 -translate-x-1/2 transition-colors duration-300 ${
+                  scrolled ? "text-slate-900" : "text-white"
+                }`}
+              >
+                {[
+                  "Overview",
+                  "Why Participate",
+                  "Rudraksha",
+                  "Event Details",
+                ].map((item) => (
+                  <button
+                    key={item}
+                    onClick={() =>
+                      scrollToSection(item.toLowerCase().replace(" ", "-"))
+                    }
+                    className="hover:text-orange-500 transition-colors whitespace-nowrap"
+                  >
+                    {item}
+                  </button>
+                ))}
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0 z-10">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className={`hidden sm:inline-flex px-3 h-8 md:h-9 hover:text-orange-500 hover:bg-transparent transition-colors ${
+                    scrolled ? "text-slate-900" : "text-white"
+                  }`}
+                  onClick={() => setIsRegistrationOpen(true)}
+                >
+                  Register
+                </Button>
+
+                <Button
+                  size="sm"
+                  className="text-white bg-[linear-gradient(115.78deg,#FF9933_0%,#FFB84D_40%,#DC2626_100%)] hover:opacity-90 transition-all px-4 sm:px-6 h-8 md:h-10 rounded-[4px] text-[11px] sm:text-xs font-bold uppercase tracking-wider"
+                  onClick={() => setIsBookingOpen(true)}
+                >
+                  Pre-Book
+                </Button>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        {/* Main Content Area */}
+        <main className="relative z-10 pt-20 md:pt-24">
+          <section id="overview" className="w-full">
+            <HeroSection
+              onRegisterClick={() => setIsRegistrationOpen(true)}
+              onPreBookClick={() => setIsBookingOpen(true)}
+            />
+          </section>
+
+          <section id="stats" className="w-full">
+            <StatsSection />
+          </section>
+        </main>
       </div>
-    </div>
-  </nav>
-
-  {/* Main Content Area */}
-  <main className="relative z-10 pt-20 md:pt-24">
-    <section id="overview" className="w-full">
-      <HeroSection
-        onRegisterClick={() => setIsRegistrationOpen(true)}
-        onPreBookClick={() => setIsBookingOpen(true)}
-      />
-    </section>
-
-    <section id="stats" className="w-full">
-      <StatsSection />
-    </section>
-  </main>
-</div>
 
       {/* Rest of content - outside video background */}
       <div className="relative z-10 bg-background">
